@@ -7,10 +7,16 @@ import java.util.Set;
 
 public class Dev {
     private String nome;
-    private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
-    private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+    private Set<Conteudo> conteudosInscritos;
+    private Set<Conteudo> conteudosConcluidos ;
 
-    public void inscreverBootcamp(Bootcamp bootcamp){
+    public Dev(String nome) {
+        this.nome = nome;
+        this.conteudosInscritos = new LinkedHashSet<>();
+        this.conteudosConcluidos = new LinkedHashSet<>();
+    }
+
+    public void matricularBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
     }
@@ -69,4 +75,6 @@ public class Dev {
     public int hashCode() {
         return Objects.hash(nome, conteudosInscritos, conteudosConcluidos);
     }
+
+
 }

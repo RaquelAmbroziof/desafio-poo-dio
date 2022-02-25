@@ -1,62 +1,36 @@
-import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        Curso curso1 = new Curso();
-        curso1.setTitulo("curso java");
-        curso1.setDescricao("descrição curso java");
-        curso1.setCargaHoraria(8);
-
-        Curso curso2 = new Curso();
-        curso2.setTitulo("curso js");
-        curso2.setDescricao("descrição curso js");
-        curso2.setCargaHoraria(4);
-
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria de java");
-        mentoria.setDescricao("descrição mentoria java");
-        mentoria.setData(LocalDate.now());
+        Conteudo curso1 = new Curso("Java1", "Descricao curso1 Java", 4, Nivel.BASICO);
+        Conteudo curso2 = new Curso("Java2", "Descricao curso2 Java", 6, Nivel.INTERMEDIARIO);
+        Conteudo curso3 = new Curso("Java3", "Descricao curso3 Java", 8, Nivel.AVANCADO);
+        Conteudo curso4 = new Curso("Python2", "Descricao curso1 Python", 6, Nivel.INTERMEDIARIO);
+        Conteudo mentoria1 = new Mentoria("Mentoria de java", "Descrição mentoria1 java", 2);
 
         /*System.out.println(curso1);
         System.out.println(curso2);
-        System.out.println(mentoria);*/
+        System.out.println(curso3);
+        System.out.println(curso4);
+        System.out.println(mentoria1);*/
 
-        Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        Set<Conteudo> conteudosBootcampJava = new LinkedHashSet<>(Arrays.asList(curso1, curso2, curso3, mentoria1));
+        Bootcamp bootcamp = new Bootcamp("Java", "Descrição Bootcamp Java Developer", conteudosBootcampJava);
+        //System.out.println(bootcamp);
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        devCamila.progredir();
-        devCamila.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
-        System.out.println("XP:" + devCamila.calcularTotalXp());
-
-        System.out.println("-------");
-
-        Dev devJoao = new Dev();
-        devJoao.setNome("Joao");
-        devJoao.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        devJoao.progredir();
-        devJoao.progredir();
-        devJoao.progredir();
-        System.out.println("-");
-        System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
-        System.out.println("XP:" + devJoao.calcularTotalXp());
+        Dev dev1 = new Dev("Camila");
+        dev1.matricularBootcamp(bootcamp);
+        System.out.println("Conteúdos Inscritos Camila:" + dev1.getConteudosInscritos());
+        dev1.progredir();
+        System.out.println("Conteúdos Inscritos " + dev1.getNome() + ":" + dev1.getConteudosInscritos());
+        System.out.println("Conteúdos Concluídos " + dev1.getNome() + ":" + dev1.getConteudosConcluidos());
+        System.out.println("XP " + dev1.getNome() + ":" +dev1.calcularTotalXp());
 
     }
 

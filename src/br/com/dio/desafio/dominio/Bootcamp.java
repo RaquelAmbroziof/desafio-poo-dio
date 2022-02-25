@@ -9,11 +9,19 @@ import java.util.Set;
 public class Bootcamp {
     private String nome;
     private String descricao;
-    private final LocalDate dataInicial = LocalDate.now();
-    private final LocalDate dataFinal = dataInicial.plusDays(45);
-    private Set<Dev> devsInscritos = new HashSet<>();
-    private Set<Conteudo> conteudos = new LinkedHashSet<>();
+    private Set<Conteudo> conteudos;
+    private final LocalDate dataInicial;
+    private final LocalDate dataFinal;
+    private Set<Dev> devsInscritos;
 
+    public Bootcamp(String nome, String descricao, Set<Conteudo> conteudos) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.conteudos = conteudos;
+        this.dataInicial = LocalDate.now();
+        this.dataFinal = dataInicial.plusDays(45);
+        this.devsInscritos = new HashSet<>();
+    }
 
     public String getNome() {
         return nome;
@@ -66,5 +74,17 @@ public class Bootcamp {
     @Override
     public int hashCode() {
         return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos);
+    }
+
+    @Override
+    public String toString() {
+        return "Bootcamp{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", dataInicial=" + dataInicial +
+                ", dataFinal=" + dataFinal +
+                ", devsInscritos=" + devsInscritos +
+                ", conteudos=" + conteudos +
+                '}';
     }
 }
